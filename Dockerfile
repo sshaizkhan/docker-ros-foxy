@@ -46,4 +46,14 @@ RUN echo "source /opt/ros/foxy/setup.bash" >> /home/bot/.bashrc
 
 COPY ros_entrypoint.sh /bin/rossrc
 
+#Installing Gazebo 11
+RUN sudo apt install ros-foxy-gazebo-ros-pkgs -ye
+RUN sudo apt install ros-foxy-ros-core ros-foxy-geometry2 -y
+
+# Installing nvidia-docker toolkit
+sudo apt-get update 
+sudo apt-get install -y nvidia-docker2
+sudo systemctl restart docker
+
+
 ENTRYPOINT [ "rossrc" ]
