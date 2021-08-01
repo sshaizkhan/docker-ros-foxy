@@ -1,10 +1,7 @@
 #!/bin/bash
-source /opt/ros/foxy/setup.bash
+set -e
 
-WS1="/workspace/ros_ws"
-if [ -d "$WS1/devel" ]
-then
-source $WS1/devel/setup.bash
-fi
+# setup ros environment
+source /opt/ros/foxy/setup.bash
 
 exec "$@"
