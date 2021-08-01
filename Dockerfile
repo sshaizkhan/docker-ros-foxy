@@ -41,6 +41,17 @@ RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/r
 RUN sudo apt-get update
 RUN sudo apt-get update && DEBIAN_FRONTEND=noninteractive sudo apt-get install -y ros-foxy-desktop
 
+#Installing Gazebo 11
+RUN sudo apt-get install -y ros-foxy-gazebo-ros-pkgs 
+RUN sudo apt-get install -y ros-foxy-ros-core ros-foxy-geometry2 
+
+#Installing colcon for ROS2
+RUN sudo sh -c 'echo "deb [arch=amd64,arm64] http://repo.ros2.org/ubuntu/main `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
+RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+
+RUN sudo apt-get update
+RUN sudo apt-get install -y python3-colcon-common-extensions
+
 #Setting up source
 RUN echo "source /opt/ros/foxy/setup.bash" >> /home/bot/.bashrc
 
